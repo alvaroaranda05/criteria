@@ -13,12 +13,17 @@ public final class ProjectEntity {
     @Column(name = "name", nullable = false, length = 250)
     private String name;
 
+    @Basic
+    @Column(name = "description", length = 250)
+    private String description;
+
     public ProjectEntity() {
     }
 
-    public ProjectEntity(int id, String name) {
+    public ProjectEntity(int id, String name, String description) {
         this.id = id;
         this.name = name;
+        this.description = description;
     }
 
     public int getId() {
@@ -27,5 +32,9 @@ public final class ProjectEntity {
 
     public String getName() {
         return name;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

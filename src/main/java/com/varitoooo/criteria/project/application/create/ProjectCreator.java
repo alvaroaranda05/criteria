@@ -14,13 +14,13 @@ public final class ProjectCreator {
         this.projectRepository = projectRepository;
     }
 
-    public Project create(ProjectId id, ProjectName name) {
+    public Project create(ProjectId id, ProjectName name, ProjectDescription description) {
         DomainProjectFinder domainProjectFinder = new DomainProjectFinder(projectRepository);
         Optional<Project> existingProject = domainProjectFinder.find(id);
 
         if (existingProject.isPresent()) throw new InvalidEntityException("There is another project with id " + id.getValue());
 
-        Project project = Project.create(id, name);
+        Project project = Project.create(id, name, description);
         projectRepository.save(project);
 
         return project;
