@@ -13,10 +13,6 @@ public final class Project {
         this.description = description;
     }
 
-    public static Project create(ProjectId id, ProjectName name, ProjectDescription description) {
-        return new Project(id, name, description);
-    }
-
     public ProjectId getId() {
         return id;
     }

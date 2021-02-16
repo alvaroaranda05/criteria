@@ -5,16 +5,21 @@ import javax.persistence.*;
 @Entity
 @Table(name = "project")
 public final class ProjectEntity {
+    public static final String COLUMN_ID = "id";
+    public static final String COLUMN_NAME = "name";
+    public static final String COLUMN_DESCRIPTION = "description";
+
+
     @Id
-    @Column(name = "id", nullable = false, updatable = false, unique = true)
+    @Column(name = COLUMN_ID, nullable = false, updatable = false, unique = true)
     private int id;
 
     @Basic
-    @Column(name = "name", nullable = false, length = 250)
+    @Column(name = COLUMN_NAME, nullable = false, length = 250)
     private String name;
 
     @Basic
-    @Column(name = "description", length = 250)
+    @Column(name = COLUMN_DESCRIPTION, length = 250)
     private String description;
 
     public ProjectEntity() {
