@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ProjectRepository {
-    void save(Project project);
+    List<Project> getAll();
 
     Optional<Project> search(ProjectId projectId);
 

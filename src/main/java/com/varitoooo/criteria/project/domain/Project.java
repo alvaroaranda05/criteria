@@ -1,5 +1,7 @@
 package com.varitoooo.criteria.project.domain;
 
+import com.varitoooo.criteria.project.domain.criteria.ProjectSearchCriteria;
+
 import java.util.Objects;
 
 public final class Project {
@@ -23,6 +25,10 @@ public final class Project {
 
     public ProjectDescription getDescription() {
         return description;
+    }
+
+    public boolean satisfies(ProjectSearchCriteria criteria) {
+        return criteria.isSatisfiedBy(this);
     }
 
     @Override

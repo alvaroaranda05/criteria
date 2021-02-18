@@ -10,6 +10,7 @@ import org.springframework.data.jpa.domain.Specification;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 public final class ProjectRepositoryPostgreSql extends BaseRepositoryPostgreSql implements ProjectRepository {
 
@@ -20,9 +21,10 @@ public final class ProjectRepositoryPostgreSql extends BaseRepositoryPostgreSql 
     }
 
     @Override
-    public void save(Project project) {
-        ProjectEntity projectEntity = new ProjectEntityConverter().getEntity(project);
-        projectRepositoryPostgreSqlJpa.save(projectEntity);
+    public List<Project> getAll() {
+        return StreamSupport.stream(projectRepositoryPostgreSqlJpa.findAll().spliterator(), false)
+                .map(entity -> new ProjectEntityConverter().getProject(entity))
+                .collect(Collectors.toList());
     }
 
     @Override
