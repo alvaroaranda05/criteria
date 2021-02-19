@@ -27,10 +27,10 @@ public final class ProjectIdCriteria implements ProjectSearchCriteria {
     }
 
     private boolean moreThanOperation(Integer projectId) {
-        return projectId != null && id > projectId;
+        return projectId != null && projectId > id;
     }
 
     private boolean lessThanOperation(Integer projectId) {
-        return projectId != null && id < projectId;
+        return projectId != null && projectId < id;
     }
 }

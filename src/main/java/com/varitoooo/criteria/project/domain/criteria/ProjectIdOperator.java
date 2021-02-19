@@ -1,9 +1,12 @@
 package com.varitoooo.criteria.project.domain.criteria;
 
+import java.util.Arrays;
+import java.util.Optional;
+
 public enum ProjectIdOperator {
-    LESS_THAN("less_than"),
-    EQUAL("equal"),
-    MORE_THAN("more_than");
+    LESS_THAN("<"),
+    EQUAL("="),
+    MORE_THAN(">");
 
     private final String operation;
 
@@ -13,5 +16,11 @@ public enum ProjectIdOperator {
 
     public String getOperation() {
         return operation;
+    }
+
+    public static Optional<ProjectIdOperator> fromString(String operationString) {
+        return Arrays.stream(ProjectIdOperator.values())
+                .filter(operation -> operation.getOperation().equals(operationString))
+                .findFirst();
     }
 }

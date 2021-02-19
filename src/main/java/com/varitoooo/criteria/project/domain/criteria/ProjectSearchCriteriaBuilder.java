@@ -1,7 +1,7 @@
 package com.varitoooo.criteria.project.domain.criteria;
 
 import com.varitoooo.criteria.project.domain.ProjectDescription;
-import com.varitoooo.criteria.project.domain.ProjectId;
+import com.varitoooo.criteria.project.domain.ProjectIdOperation;
 import com.varitoooo.criteria.project.domain.ProjectName;
 import org.apache.commons.lang3.StringUtils;
 
@@ -21,8 +21,8 @@ public final class ProjectSearchCriteriaBuilder {
         return this;
     }
 
-    public ProjectSearchCriteriaBuilder withId(ProjectIdOperator operator, ProjectId id)   {
-        if (id != null) criteria.add(new ProjectIdCriteria(operator, id.getValue()));
+    public ProjectSearchCriteriaBuilder withId(ProjectIdOperation idOperation)   {
+        if (idOperation != null) criteria.add(new ProjectIdCriteria(idOperation.getOperator(), idOperation.getId().getValue()));
         return this;
     }
 

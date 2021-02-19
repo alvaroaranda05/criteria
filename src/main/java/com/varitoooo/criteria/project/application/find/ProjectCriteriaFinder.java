@@ -14,9 +14,9 @@ public final class ProjectCriteriaFinder {
         this.projectRepository = projectRepository;
     }
 
-    public List<Project> find(ProjectId id, ProjectName name, ProjectDescription description) {
+    public List<Project> find(ProjectIdOperation idOperation, ProjectName name, ProjectDescription description) {
         List<Project> projects = projectRepository.getAll();
-        List<ProjectSearchCriteria> criteria = getCriteria(name, description);
+        List<ProjectSearchCriteria> criteria = getCriteria(idOperation, name, description);
         DomainProjectCriteriaFinder domainProjectCriteriaFinder = new DomainProjectCriteriaFinder(criteria);
 
         return projects.stream()
@@ -24,8 +24,9 @@ public final class ProjectCriteriaFinder {
                 .collect(Collectors.toList());
     }
 
-    private List<ProjectSearchCriteria> getCriteria(ProjectName name, ProjectDescription description) {
+    private List<ProjectSearchCriteria> getCriteria(ProjectIdOperation idOperation, ProjectName name, ProjectDescription description) {
         return new ProjectSearchCriteriaBuilder()
+                .withId(idOperation)
                 .withName(name)
                 .withDescription(description)
                 .build();
